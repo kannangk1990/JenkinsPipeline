@@ -1,0 +1,24 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Hello') {
+            steps {
+                echo 'Hello World'
+            }
+        }
+        stage('Build') {
+            steps {
+                echo 'Building'
+                git credentialsId: '744b1407-8d02-418e-afcf-f5a544ead491', url: 'https://github.com/kannangk1990/Javaprogram.git'
+                sh '''javac hello.java
+                java hello'''
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'Deploying'
+            }
+        }
+    }
+}
